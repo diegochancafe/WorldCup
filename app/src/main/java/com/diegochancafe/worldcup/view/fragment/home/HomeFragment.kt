@@ -1,4 +1,4 @@
-package com.diegochancafe.worldcup.view.home
+package com.diegochancafe.worldcup.view.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.diegochancafe.worldcup.databinding.FragmentHomeBinding
+import com.diegochancafe.worldcup.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
