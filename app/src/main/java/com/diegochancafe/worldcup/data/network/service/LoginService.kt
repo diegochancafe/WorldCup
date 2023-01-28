@@ -3,6 +3,7 @@ package com.diegochancafe.worldcup.data.network.service
 import com.diegochancafe.worldcup.data.model.request.LoginModelRequest
 import com.diegochancafe.worldcup.data.model.response.LoginModelResponse
 import com.diegochancafe.worldcup.data.network.IRetrofitApi
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -21,7 +22,20 @@ class LoginService @Inject constructor(private val api: IRetrofitApi) {
                 if (response.isSuccessful) {
                     response.body()
                 } else {
-                    null
+                    // --
+                    try {
+                        // --
+                        val gson = GsonBuilder().create()
+                        val loginModelResponse = gson.fromJson(
+                            response.errorBody()?.string(),
+                            LoginModelResponse::class.java
+                        )
+                        // --
+                        loginModelResponse
+
+                    } catch (e: Exception) {
+                        null
+                    }
                 }
             } catch (e: Exception) {
                 null

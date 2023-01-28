@@ -67,6 +67,8 @@
                             android:id="@+id/etLoginPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
                             android:hint="Contraseña"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -86,6 +88,28 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- Loader -->
+    <RelativeLayout
+        android:id="@+id/rlLoader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#27141A"
+            android:alpha="0.3"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
 
 
 

@@ -37,8 +37,7 @@ class LoginViewModel @Inject constructor(
 
             } catch (e: Exception) {
                 // --
-                loginModelDomain.postValue(null)
-                // --
+                errorMessage.postValue(e.message)
                 isLoading.postValue(false) // -- Finish...
             }
         }

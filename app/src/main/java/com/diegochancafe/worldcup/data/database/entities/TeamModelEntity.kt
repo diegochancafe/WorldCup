@@ -1,14 +1,16 @@
 package com.diegochancafe.worldcup.data.database.entities
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.diegochancafe.worldcup.domain.model.TeamModelDomain
 
 // --
+@Entity(tableName = "team_table")
 data class TeamModelEntity (
     // --
     @PrimaryKey
-    @ColumnInfo("id")  val id: String? = "",
+    @ColumnInfo("id")  val id: String,
     @ColumnInfo("_id") val identifier: String? = "",
     @ColumnInfo("name_en")  val nameEn: String? = "",
     @ColumnInfo("name_fa")  val nameFa: String? = "",

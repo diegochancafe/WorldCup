@@ -5,7 +5,7 @@ import java.io.Serializable
 
 // --
 data class TeamModelDomain (
-    val id: String? = "",
+    val id: String,
     val identifier: String? = "",
     val nameEn: String? = "",
     val nameFa: String? = "",

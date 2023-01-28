@@ -13,7 +13,7 @@ data class LoginModelDomain(
 
 // --
 data class LoginTokenDomain(
-    val token: String? = ""
+    var token: String? = ""
 ): Serializable
 
 
