@@ -1,4 +1,4 @@
-package com.diegochancafe.worldcup.ui.home
+package com.diegochancafe.worldcup.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
