@@ -1,5 +1,6 @@
 package com.diegochancafe.worldcup.domain.model
 
+import com.diegochancafe.worldcup.data.database.entities.TeamModelEntity
 import com.diegochancafe.worldcup.data.model.response.TeamData
 import java.io.Serializable
 
@@ -17,3 +18,4 @@ data class TeamModelDomain (
 
 // -- Extensions
 fun TeamData.toDomain() = TeamModelDomain(id, identifier, nameEn, nameFa, flag, fifaCode, iso2, groups)
+fun TeamModelEntity.toDomain() = TeamModelDomain(id, identifier, nameEn, nameFa, flag, fifaCode, iso2, groups)

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diegochancafe.worldcup.data.model.request.LoginModelRequest
 import com.diegochancafe.worldcup.domain.model.LoginModelDomain
-import com.diegochancafe.worldcup.domain.usecase.LoginUseCase
+import com.diegochancafe.worldcup.domain.usecase.PostLoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     // -- Injections
-    private val loginUseCase: LoginUseCase,
+    private val postLoginUseCase: PostLoginUseCase,
 ): ViewModel() {
     // --
     val loginModelDomain = MutableLiveData<LoginModelDomain?>()
@@ -30,7 +30,7 @@ class LoginViewModel @Inject constructor(
             // --
             try {
                 // --
-                val result = loginUseCase(request)
+                val result = postLoginUseCase(request)
                 loginModelDomain.postValue(result)
                 // --
                 isLoading.postValue(false) // -- Finish...

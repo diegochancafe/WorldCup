@@ -14,6 +14,7 @@ import com.diegochancafe.worldcup.data.model.request.LoginModelRequest
 import com.diegochancafe.worldcup.data.model.singleton.TokenSingleton
 import com.diegochancafe.worldcup.databinding.ActivityLoginBinding
 import com.diegochancafe.worldcup.domain.model.LoginModelDomain
+import com.diegochancafe.worldcup.domain.model.LoginTokenDomain
 import com.diegochancafe.worldcup.util.Config
 import com.diegochancafe.worldcup.viewmodel.LoginViewModel
 import com.google.android.gms.security.ProviderInstaller
@@ -44,7 +45,11 @@ class LoginActivity : AppCompatActivity() {
         sharedPref = getSharedPreferences(Config.SP_LOGIN_DATA, Context.MODE_PRIVATE)
         // --
         val spLogin: Boolean = sharedPref.getBoolean("isActive", false)
+        val token: String? = sharedPref.getString("token", "")
+        // --
         if (spLogin) {
+            // --
+            tokenSingleton.loginTokenDomain = LoginTokenDomain(token)
             changeActivity()
         }
         // --
@@ -125,7 +130,7 @@ class LoginActivity : AppCompatActivity() {
         // --
         editor.apply()
         // --
-        tokenSingleton.loginTokenDomain?.token = token
+        tokenSingleton.loginTokenDomain = LoginTokenDomain(token)
     }
 
     // --

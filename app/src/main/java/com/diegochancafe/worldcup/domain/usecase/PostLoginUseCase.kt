@@ -6,7 +6,7 @@ import com.diegochancafe.worldcup.domain.model.LoginModelDomain
 import javax.inject.Inject
 
 // -- Ready for injection
-class LoginUseCase @Inject constructor(private val repository: LoginRepository) {
+class PostLoginUseCase @Inject constructor(private val repository: LoginRepository) {
     // --
     suspend operator fun invoke(request: LoginModelRequest): LoginModelDomain? {
         // --
