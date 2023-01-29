@@ -13,7 +13,8 @@ data class TeamModelDomain (
     val flag: String? = "",
     val fifaCode: String? = "",
     val iso2: String? = "",
-    val groups: String? = ""
+    val groups: String? = "",
+    var index: Int? = 0
 ): Serializable
 
 // -- Extensions
