@@ -17,4 +17,10 @@
         android:label="fragment_match_dialog"
         tools:layout="@layout/fragment_match_dialog" />
 
+    <dialog
+        android:id="@+id/navigationRegisterDialogFragment"
+        android:name="com.diegochancafe.worldcup.view.fragment.register.RegisterDialogFragment"
+        android:label="fragment_register_dialog"
+        tools:layout="@layout/fragment_register_dialog" />
+
 </navigation>

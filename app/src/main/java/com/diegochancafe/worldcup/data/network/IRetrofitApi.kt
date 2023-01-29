@@ -1,6 +1,7 @@
 package com.diegochancafe.worldcup.data.network
 
 import com.diegochancafe.worldcup.data.model.request.LoginModelRequest
+import com.diegochancafe.worldcup.data.model.request.RegisterModelRequest
 import com.diegochancafe.worldcup.data.model.response.LoginModelResponse
 import com.diegochancafe.worldcup.data.model.response.MatchModelResponse
 import com.diegochancafe.worldcup.data.model.response.TeamModelResponse
@@ -27,4 +28,10 @@ interface IRetrofitApi {
     suspend fun getMatch(
         @Header("Authorization") token: String
     ): Response<MatchModelResponse?>
+
+    // --
+    @POST("user")
+    suspend fun postRegister(
+        @Body request: RegisterModelRequest
+    ): Response<LoginModelResponse?>
 }

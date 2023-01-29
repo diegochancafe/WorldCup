@@ -3,12 +3,14 @@ package com.diegochancafe.worldcup.view.activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.Observer
 import com.diegochancafe.worldcup.data.model.request.LoginModelRequest
 import com.diegochancafe.worldcup.data.model.singleton.TokenSingleton
@@ -16,11 +18,11 @@ import com.diegochancafe.worldcup.databinding.ActivityLoginBinding
 import com.diegochancafe.worldcup.domain.model.LoginModelDomain
 import com.diegochancafe.worldcup.domain.model.LoginTokenDomain
 import com.diegochancafe.worldcup.util.Config
+import com.diegochancafe.worldcup.view.fragment.register.RegisterDialogFragment
 import com.diegochancafe.worldcup.viewmodel.LoginViewModel
-import com.google.android.gms.security.ProviderInstaller
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 // --
 @AndroidEntryPoint
@@ -52,9 +54,26 @@ class LoginActivity : AppCompatActivity() {
             tokenSingleton.loginTokenDomain = LoginTokenDomain(token)
             changeActivity()
         }
+        // -- Automatic login later of registration
+        supportFragmentManager.setFragmentResultListener("credentials", this) { requestKey, result ->
+            // --
+            val email = result.getString("email")
+            val password = result.getString("password")
+            // --
+            viewBinding.etLoginUsername.setText(email)
+            viewBinding.etLoginPassword.setText(password)
+            // --
+//            login() // -- Optional
+        }
         // --
         viewBinding.btnLogin.setOnClickListener {
             login()
+        }
+        // --
+        viewBinding.tvRegister.setOnClickListener {
+            // --
+            val dialogFrag: DialogFragment = RegisterDialogFragment()
+            dialogFrag.show(supportFragmentManager, null)
         }
         // --
         supportActionBar?.hide()
