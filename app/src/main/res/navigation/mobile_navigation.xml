@@ -11,4 +11,10 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
+    <dialog
+        android:id="@+id/navigationMatchDialogFragment"
+        android:name="com.diegochancafe.worldcup.view.fragment.match.MatchDialogFragment"
+        android:label="fragment_match_dialog"
+        tools:layout="@layout/fragment_match_dialog" />
+
 </navigation>

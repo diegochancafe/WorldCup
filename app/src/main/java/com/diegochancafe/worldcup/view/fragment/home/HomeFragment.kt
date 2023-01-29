@@ -7,19 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.diegochancafe.worldcup.R
 import com.diegochancafe.worldcup.databinding.FragmentHomeBinding
 import com.diegochancafe.worldcup.domain.model.TeamModelDomain
+import com.diegochancafe.worldcup.view.callback.ITeamCallback
 import com.diegochancafe.worldcup.view.fragment.home.adapter.TeamAdapter
 import com.diegochancafe.worldcup.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ITeamCallback {
     // --
     private val viewModel: HomeViewModel by viewModels()
     // --
@@ -42,7 +47,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // --
         appContext = view.context
-        teamAdapter = TeamAdapter(appContext)
+        teamAdapter = TeamAdapter(this, appContext)
         // --
 
         // --
@@ -63,6 +68,7 @@ class HomeFragment : Fragment() {
     private fun setupViewModel() {
         // --
         viewModel.getTeam()
+        viewModel.getMatch()
         // --
         viewModel.teamModelDomain.observe(this.viewLifecycleOwner, teamModelDomainObserver)
         viewModel.errorMessage.observe(this.viewLifecycleOwner, errorMessageObserver)
@@ -120,5 +126,12 @@ class HomeFragment : Fragment() {
         Toast.makeText(appContext, response, Toast.LENGTH_LONG).show()
     }
 
+    // --
+    override fun onTeamClicked(teamModelDomain: TeamModelDomain) {
+        // --
+        val bundle = bundleOf("teamModelDomain" to teamModelDomain)
+        // --
+        findNavController().navigate(R.id.navigationMatchDialogFragment, bundle)
+    }
 
 }

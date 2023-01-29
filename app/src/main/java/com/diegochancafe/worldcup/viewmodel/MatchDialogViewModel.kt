@@ -3,26 +3,25 @@ package com.diegochancafe.worldcup.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diegochancafe.worldcup.domain.model.TeamModelDomain
+import com.diegochancafe.worldcup.domain.model.MatchModelDomain
+import com.diegochancafe.worldcup.domain.usecase.GetMatchByGroupUseCase
 import com.diegochancafe.worldcup.domain.usecase.GetMatchUseCase
-import com.diegochancafe.worldcup.domain.usecase.GetTeamUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class MatchDialogViewModel @Inject constructor(
     // -- Injects
-    private val getTeamUseCase: GetTeamUseCase,
-    private val getMatchUseCase: GetMatchUseCase
+    private val getMatchByGroupUseCase: GetMatchByGroupUseCase
 ) : ViewModel() {
     // --
-    var teamModelDomain: MutableLiveData<List<TeamModelDomain>> = MutableLiveData()
+    var matchModelDomain: MutableLiveData<List<MatchModelDomain>> = MutableLiveData()
     var errorMessage = MutableLiveData<String>()
     var isLoading = MutableLiveData<Boolean>()
 
     // --
-    fun getTeam() {
+    fun getMatchByGroup(group: String) {
         // --
         isLoading.postValue(true) // -- Loading...
         // --
@@ -30,8 +29,8 @@ class HomeViewModel @Inject constructor(
             // --
             try {
                 // --
-                val result = getTeamUseCase.invoke()
-                teamModelDomain.postValue(result)
+                val result = getMatchByGroupUseCase.invoke(group)
+                matchModelDomain.postValue(result)
                 // --
                 isLoading.postValue(false) // -- Finish...
 
@@ -39,21 +38,6 @@ class HomeViewModel @Inject constructor(
                 // --
                 errorMessage.postValue(e.message)
                 isLoading.postValue(false) // -- Finish...
-            }
-        }
-    }
-
-    // --
-    fun getMatch() {
-        // --
-        viewModelScope.launch {
-            // --
-            try {
-                // --
-                getMatchUseCase.invoke()
-
-            } catch (e: Exception) {
-                // --
             }
         }
     }

@@ -14,13 +14,13 @@ class MatchService @Inject constructor(
     private val tokenSingleton: TokenSingleton
 ) {
     // --
-    suspend fun getMatchById(id: String): MatchModelResponse? {
+    suspend fun getMatch(): MatchModelResponse? {
         // --
         return withContext(Dispatchers.IO) {
             // --
             try {
                 // --
-                val response = api.getMatchById(id, tokenSingleton.loginTokenDomain?.token!!)
+                val response = api.getMatch(tokenSingleton.loginTokenDomain?.token!!)
                 // --
                 if (response.isSuccessful) {
                     response.body()

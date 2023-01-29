@@ -23,9 +23,8 @@ interface IRetrofitApi {
     ): Response<TeamModelResponse?>
 
     // --
-    @GET("bymatch/{id}")
-    suspend fun getMatchById(
-        @Path("id") id: String,
+    @GET("match/")
+    suspend fun getMatch(
         @Header("Authorization") token: String
     ): Response<MatchModelResponse?>
 }

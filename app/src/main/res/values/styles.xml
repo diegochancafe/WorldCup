@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--  Full Screen Applied to dialog fragments  -->
+    <style name="FullScreenDialogStyle" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorPrimary">@color/qatar</item>
+        <item name="colorPrimaryDark">@color/qatar</item>
+        <item name="colorAccent">@color/qatar</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/white</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/qatar</item>
+    </style>
+</resources>

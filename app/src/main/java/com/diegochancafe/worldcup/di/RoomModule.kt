@@ -25,4 +25,8 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideTeamDao(appDatabase: AppDatabase) = appDatabase.getTeamDao()
+
+    @Singleton
+    @Provides
+    fun provideMatchDao(appDatabase: AppDatabase) = appDatabase.getMatchDao()
 }

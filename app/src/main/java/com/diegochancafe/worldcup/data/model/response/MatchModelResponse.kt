@@ -17,25 +17,25 @@ data class MatchData (
     val awayScore: Int?,
 
     @SerializedName("away_scorers")
-    val awayScorers: List<String>?,
+    val awayScorers: List<String>,
 
     @SerializedName("away_team_id")
     val awayTeamID: String?,
 
     val finished: String?,
-    val group: String?,
+    val group: String,
 
     @SerializedName("home_score")
     val homeScore: Int?,
 
     @SerializedName("home_scorers")
-    val homeScorers: List<String>?,
+    val homeScorers: List<String>,
 
     @SerializedName("home_team_id")
     val homeTeamID: String?,
 
     @SerializedName("id")
-    val id: String?,
+    val id: String,
 
     @SerializedName("local_date")
     val localDate: String?,
