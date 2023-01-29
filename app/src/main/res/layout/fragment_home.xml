@@ -7,6 +7,24 @@
     android:background="@drawable/ic_background_qatar"
     tools:context=".view.fragment.home.HomeFragment">
 
+    <RelativeLayout
+        android:id="@+id/rlLogout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="center"
+        android:layout_gravity="end"
+        android:background="?selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logout"/>
+
+    </RelativeLayout>
+
+    <!-- Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,8 +57,6 @@
             android:layout_marginBottom="60dp"/>
 
     </LinearLayout>
-
-
 
     <!-- Loader -->
     <RelativeLayout

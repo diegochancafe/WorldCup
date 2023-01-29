@@ -99,12 +99,7 @@ class MatchDialogFragment : DialogFragment(), IMatchCallback {
         if (response != null) {
             // --
             matchAdapter.updateData(response)
-//            viewBinding.tvEmptyMessage.visibility = View.GONE
-        } else {
-            // --
-//            viewBinding.tvEmptyMessage.visibility = View.VISIBLE
         }
-
     }
 
     // --

@@ -1,6 +1,9 @@
 package com.diegochancafe.worldcup.view.fragment.home
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.diegochancafe.worldcup.R
 import com.diegochancafe.worldcup.databinding.FragmentHomeBinding
 import com.diegochancafe.worldcup.domain.model.TeamModelDomain
+import com.diegochancafe.worldcup.util.Config
+import com.diegochancafe.worldcup.view.activity.SplashActivity
 import com.diegochancafe.worldcup.view.callback.ITeamCallback
 import com.diegochancafe.worldcup.view.fragment.home.adapter.TeamAdapter
 import com.diegochancafe.worldcup.viewmodel.HomeViewModel
@@ -31,6 +36,7 @@ class HomeFragment : Fragment(), ITeamCallback {
     private lateinit var viewBinding: FragmentHomeBinding
     private lateinit var appContext: Context
     private lateinit var teamAdapter: TeamAdapter
+    private lateinit var sharedPref: SharedPreferences
 
     // --
     override fun onCreateView(
@@ -48,11 +54,35 @@ class HomeFragment : Fragment(), ITeamCallback {
         // --
         appContext = view.context
         teamAdapter = TeamAdapter(this, appContext)
+        sharedPref = appContext.getSharedPreferences(Config.SP_LOGIN_DATA, Context.MODE_PRIVATE)
         // --
-
+        viewBinding.rlLogout.setOnClickListener {
+            logout()
+        }
         // --
         setupUI()
         setupViewModel()
+    }
+
+    private fun logout() {
+        // --
+        val dialogBuilder = AlertDialog.Builder(appContext)
+        // --
+        dialogBuilder.setMessage("¿Está seguro que quiere cerrar la sesión ?")
+            .setCancelable(false)
+            .setPositiveButton("ACEPTAR") { _, _ ->
+                // --
+                val editor: SharedPreferences.Editor = sharedPref.edit()
+                editor.clear()
+                editor.apply()
+                // --
+                startActivity(Intent(appContext, SplashActivity::class.java))
+                activity?.finish()
+            }
+            .setNegativeButton("CANCELAR") { _, _ -> }
+        // --
+        val alert = dialogBuilder.create()
+        alert.show()
     }
 
     // --
