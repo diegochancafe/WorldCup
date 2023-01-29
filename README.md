@@ -7,7 +7,12 @@ World Cup es una aplicación desarrollada en base a un desafío, cuenta con las 
 
 ![Screenshot_1674977656](https://user-images.githubusercontent.com/49561761/215312113-21e4d246-4c20-4824-8ea8-27d4c616e97a.png)
 
+# Demostración
+
+![App World Cup](https://user-images.githubusercontent.com/49561761/215312894-55cbc580-4290-48e5-8db0-41aed904919a.gif)
+
 # Acerca de
+
 
 <ul>
   <li>Para iniciar sesión, se requiere de una cuenta, para ello la app brinda un módulo de registro.</li>
