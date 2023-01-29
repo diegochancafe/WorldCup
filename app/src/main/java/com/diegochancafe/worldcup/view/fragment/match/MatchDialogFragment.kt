@@ -57,6 +57,10 @@ class MatchDialogFragment : DialogFragment(), IMatchCallback {
         teamModelDomain = arguments?.getSerializable("teamModelDomain") as TeamModelDomain
         matchAdapter = MatchAdapter(this, appContext)
         // --
+        viewBinding.rlBack.setOnClickListener {
+            dismiss()
+        }
+        // --
         setupUI()
         teamModelDomain.groups?.let { setupViewModel(it) }
     }
