@@ -127,9 +127,22 @@ class HomeFragment : Fragment(), ITeamCallback {
     }
 
     // --
-    override fun onTeamClicked(teamModelDomain: TeamModelDomain) {
+    override fun onTeamGroupClicked(teamModelDomain: TeamModelDomain) {
         // --
-        val bundle = bundleOf("teamModelDomain" to teamModelDomain)
+        val bundle = bundleOf(
+            "teamModelDomain" to teamModelDomain,
+            "isCountry" to false
+        )
+        // --
+        findNavController().navigate(R.id.navigationMatchDialogFragment, bundle)
+    }
+
+    override fun onTeamCountryClicked(teamModelDomain: TeamModelDomain) {
+        // --
+        val bundle = bundleOf(
+            "teamModelDomain" to teamModelDomain,
+            "isCountry" to true
+        )
         // --
         findNavController().navigate(R.id.navigationMatchDialogFragment, bundle)
     }

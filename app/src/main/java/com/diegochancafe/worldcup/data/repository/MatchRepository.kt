@@ -48,6 +48,14 @@ class MatchRepository @Inject constructor(
     }
 
     // --
+    suspend fun getCountryMatchesByGroupFromDatabase(group: String, country: String): List<MatchModelDomain>  {
+        // --
+        val response: List<MatchModelEntity> = matchDao.getCountryMatchesByGroup(group, country)
+        return response.map { it.toDomain() }
+    }
+
+
+    // --
     suspend fun insertMatchData(list: List<MatchModelEntity>) {
         // --
         matchDao.insertAll(list)

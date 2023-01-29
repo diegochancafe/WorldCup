@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diegochancafe.worldcup.domain.model.MatchModelDomain
+import com.diegochancafe.worldcup.domain.usecase.GetCountryMatchesByGroupUseCase
 import com.diegochancafe.worldcup.domain.usecase.GetMatchByGroupUseCase
 import com.diegochancafe.worldcup.domain.usecase.GetMatchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MatchDialogViewModel @Inject constructor(
     // -- Injects
-    private val getMatchByGroupUseCase: GetMatchByGroupUseCase
+    private val getMatchByGroupUseCase: GetMatchByGroupUseCase,
+    private val getCountryMatchesByGroupUseCase: GetCountryMatchesByGroupUseCase
 ) : ViewModel() {
     // --
     var matchModelDomain: MutableLiveData<List<MatchModelDomain>> = MutableLiveData()
@@ -30,6 +32,28 @@ class MatchDialogViewModel @Inject constructor(
             try {
                 // --
                 val result = getMatchByGroupUseCase.invoke(group)
+                matchModelDomain.postValue(result)
+                // --
+                isLoading.postValue(false) // -- Finish...
+
+            } catch (e: Exception) {
+                // --
+                errorMessage.postValue(e.message)
+                isLoading.postValue(false) // -- Finish...
+            }
+        }
+    }
+
+    // --
+    fun getCountryMatchesByGroup(group: String, country: String) {
+        // --
+        isLoading.postValue(true) // -- Loading...
+        // --
+        viewModelScope.launch {
+            // --
+            try {
+                // --
+                val result = getCountryMatchesByGroupUseCase.invoke(group, country)
                 matchModelDomain.postValue(result)
                 // --
                 isLoading.postValue(false) // -- Finish...

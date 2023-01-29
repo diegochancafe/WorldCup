@@ -36,7 +36,7 @@ class TeamAdapter(
             // --
             itemDescription.text = teamModelDomain.nameEn
             itemHeader.setOnClickListener {
-                listener.onTeamClicked(teamModelDomain)
+                listener.onTeamGroupClicked(teamModelDomain)
             }
         }
     }
@@ -52,7 +52,7 @@ class TeamAdapter(
             // --
             itemDescription.text = teamModelDomain.nameEn
             itemBody.setOnClickListener {
-                listener.onTeamClicked(teamModelDomain)
+                listener.onTeamCountryClicked(teamModelDomain)
             }
             // --
             Glide.with(appContext)

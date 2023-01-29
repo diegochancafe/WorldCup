@@ -33,6 +33,8 @@ class MatchDialogFragment : DialogFragment(), IMatchCallback {
     private lateinit var appContext: Context
     private lateinit var teamModelDomain: TeamModelDomain
     private lateinit var matchAdapter: MatchAdapter
+    // --
+    private var isCountry: Boolean? = false
 
     // --
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +57,9 @@ class MatchDialogFragment : DialogFragment(), IMatchCallback {
         // --
         appContext = view.context
         teamModelDomain = arguments?.getSerializable("teamModelDomain") as TeamModelDomain
+        isCountry = arguments?.getBoolean("isCountry")
         matchAdapter = MatchAdapter(this, appContext)
+        viewBinding.tvTeam.text = "Grupo ${teamModelDomain.groups}"
         // --
         viewBinding.rlBack.setOnClickListener {
             dismiss()
@@ -77,7 +81,12 @@ class MatchDialogFragment : DialogFragment(), IMatchCallback {
     // --
     private fun setupViewModel(group: String) {
         // --
-        viewModel.getMatchByGroup(group)
+        if (isCountry == true) {
+            viewModel.getCountryMatchesByGroup(group, teamModelDomain.nameEn.toString())
+        } else {
+            viewModel.getMatchByGroup(group)
+        }
+
         // --
         viewModel.matchModelDomain.observe(this.viewLifecycleOwner, matchModelDomainObserver)
         viewModel.errorMessage.observe(this.viewLifecycleOwner, errorMessageObserver)

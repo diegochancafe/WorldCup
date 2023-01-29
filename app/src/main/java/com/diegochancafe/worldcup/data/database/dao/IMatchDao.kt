@@ -17,6 +17,10 @@ interface IMatchDao {
     suspend fun getMatchByGroup(group: String): List<MatchModelEntity>
 
     // --
+    @Query("SELECT * FROM match_table WHERE group_name = :group AND (home_team_en = :country OR away_team_en = :country)")
+    suspend fun getCountryMatchesByGroup(group: String, country: String): List<MatchModelEntity>
+
+    // --
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(list: List<MatchModelEntity>)
 
