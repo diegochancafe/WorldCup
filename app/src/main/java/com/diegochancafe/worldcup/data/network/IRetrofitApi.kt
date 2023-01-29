@@ -2,6 +2,7 @@ package com.diegochancafe.worldcup.data.network
 
 import com.diegochancafe.worldcup.data.model.request.LoginModelRequest
 import com.diegochancafe.worldcup.data.model.response.LoginModelResponse
+import com.diegochancafe.worldcup.data.model.response.MatchModelResponse
 import com.diegochancafe.worldcup.data.model.response.TeamModelResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -20,4 +21,11 @@ interface IRetrofitApi {
     suspend fun getTeam(
         @Header("Authorization") token: String
     ): Response<TeamModelResponse?>
+
+    // --
+    @GET("bymatch/{id}")
+    suspend fun getMatchById(
+        @Path("id") id: String,
+        @Header("Authorization") token: String
+    ): Response<MatchModelResponse?>
 }
