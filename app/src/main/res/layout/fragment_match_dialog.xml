@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background_qatar"
+    android:background="@color/bg_qatar"
     tools:context=".view.fragment.match.MatchDialogFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_background_qatar">
 
         <RelativeLayout
             android:id="@+id/rlBack"
@@ -68,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
 

@@ -32,6 +32,7 @@
                 app:cardCornerRadius="250dp"
                 android:layout_marginTop="7.5dp"
                 android:layout_marginBottom="7.5dp"
+                app:cardBackgroundColor="@color/white"
                 android:layout_gravity="center_vertical">
 
                 <LinearLayout
@@ -138,6 +139,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 app:cardCornerRadius="100dp"
+                app:cardBackgroundColor="@color/white"
                 android:layout_gravity="center">
 
                 <androidx.cardview.widget.CardView
@@ -168,6 +170,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 app:cardCornerRadius="100dp"
+                app:cardBackgroundColor="@color/white"
                 android:layout_gravity="center">
 
                 <androidx.cardview.widget.CardView
